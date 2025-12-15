@@ -8,19 +8,19 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # Carpeta de trabajo dentro del contenedor
 WORKDIR /work
 
-# Instalar compiladores básicos (por si alguna librería lo necesita)
+# Instala compiladores basicos
 RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copiar requirements e instalar dependencias de Python
+# Copiarel documento donde pusimos las librerias y version de python que necesitariamos
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar TODO lo de la carpeta actual de tu proyecto al contenedor
+# Copiar todo al contenedor de la carpeta.
 COPY . .
 
-# Exponer el puerto donde correrá Jupyter
+# Expone en puerto donde correra el docker osea todas las versiones de python y las librerias
 EXPOSE 8888
 
 # Comando por defecto: levantar Jupyter Lab dentro del contenedor
